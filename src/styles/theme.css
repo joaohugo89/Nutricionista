@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================================
+   PALETA — mude só estes valores HSL (sem vírgulas) para rebrandar o site.
+   ========================================================================= */
+:root {
+  --c-terracota: 12 62% 62%;  /* Terracota / Goiaba principal */
+  --c-goiaba:     8 72% 70%;  /* Goiaba suave (hero)          */
+  --c-oliva:     82 22% 42%;  /* Verde oliva profundo         */
+  --c-sage:      88 24% 72%;  /* Verde sage claro             */
+  --c-creme:     38 54% 95%;  /* Creme de fundo               */
+  --c-areia:     34 38% 88%;  /* Areia / bordas               */
+  --c-tinta:     26 26% 18%;  /* Texto escuro                 */
+  --c-suave:     26 12% 42%;  /* Texto secundário             */
+
+  /* Deslocamento do gradiente controlado pelo scroll (ver FluidBackground) */
+  --scroll-shift: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  @apply bg-creme text-tinta font-sans antialiased;
+  margin: 0;
+}
+
+.font-display { font-family: Fraunces, Georgia, serif; font-variation-settings: 'opsz' 40; }
+
+@layer components {
+  /* Container padrão das seções */
+  .shell { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+
+  /* Cartão orgânico reutilizável */
+  .card-organic {
+    @apply rounded-organic border border-areia/70 bg-white/70 backdrop-blur-sm shadow-soft;
+  }
+
+  /* Botão pílula */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-pill px-6 py-3
+           text-sm font-semibold transition-all duration-300 focus:outline-none
+           focus-visible:ring-2 focus-visible:ring-terracota/60 focus-visible:ring-offset-2;
+  }
+  .btn-primary { @apply btn bg-terracota text-white hover:bg-terracota/90 hover:shadow-lift; }
+  .btn-ghost   { @apply btn border border-tinta/15 bg-white/60 text-tinta hover:bg-white; }
+
+  /* Badge colorida */
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-pill px-3 py-1 text-[11px]
+           font-semibold uppercase tracking-[0.14em];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
