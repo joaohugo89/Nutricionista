@@ -231,3 +231,29 @@ src/
 - `prefers-reduced-motion` desliga animações e transições.
 - Cards de preço são navegáveis por teclado (`Tab` + `Enter`/`Espaço`) e têm
   anel de foco visível.
+
+---
+
+## 12. Publicar no GitHub Pages
+
+O repositório já traz o workflow `.github/workflows/deploy.yml`, que builda e
+publica a cada push na `main`.
+
+**Passo único, feito uma vez no GitHub:**
+
+1. Abra **Settings → Pages**;
+2. em **Build and deployment → Source**, escolha **GitHub Actions**;
+3. volte em **Actions**, abra a última execução e clique em **Re-run jobs**
+   (ou faça qualquer push novo).
+
+O site fica em `https://<usuario>.github.io/<repositorio>/`.
+
+### Por que não precisa configurar a base manualmente
+
+`vite.config.ts` lê `GITHUB_REPOSITORY` do Actions e monta a base
+`/<repositorio>/` sozinho. Em domínio próprio (ou no repositório
+`usuario.github.io`), builde com `BASE_URL=/`:
+
+```bash
+BASE_URL=/ npm run build
+```
